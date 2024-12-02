@@ -1,20 +1,19 @@
-def factorial(n: int):
-    """Compute the value of the factorial function.
+def factorial(n: int) -> int:
+    """Compute the factorial of a non-negative integer n.
 
-    Execution logic: 不斷跑遞迴直到達到 base case
-    factorial(2) -> 2 * factorial(1)<---|
-    factorial(1) -> 1 * factorial(0)<---|
-    factorial(0) -> 1 ------------------|
+    Args:
+        n (int): A non-negative integer.
+    Returns:
+        int: The factorial of n.
     """
-    # 檢查n是不是整數
+    # 如果輸入不是整數，引發型別錯誤
     if not isinstance(n, int):
         raise TypeError("n must be an integer.")
-    # 根據階層函數的定義，n只能是正整數或0，當n是負值時，引發值異常
+    # 如果輸入是負整數，引發值錯誤
     if n < 0:
-        raise ValueError("n must be positive number or zero.")
-    # base case: 0! = 1
+        raise ValueError("n must be a non-negative integer.")
+    # 如果輸入是0，回傳1 (base case)
     if n == 0:
         return 1
-    # recursive case: n! = n * (n-1)!
-    if n > 0:
-        return n * factorial(n - 1)
+    # 如果輸入是正整數，回傳 `n`乘以`factorial(n-1)` (recursive case)
+    return n * factorial(n - 1)
